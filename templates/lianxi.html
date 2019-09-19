@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<form action="">
+    {% csrf_token %}
+    用户名：<input id="username" type="text" name="username">
+    密码：<input id="password" type="password" name="password">
+    <input id="check_bata" type="button" value="提交">
+</form>
+<script>
+    $("#check_bata").click(
+        function () {
+            username=$("#username").val();
+            password=$("#password").val();
+            stan_data={
+                'username':username,
+                'password':password,
+                'csrfmiddlewaretoken':'{{ csrf_token }}'
+            };
+            url='/ajax_post_data/'
+            $.ajax(
+                {
+                    url:url,
+                    type:'post',
+                    data:stan_data,
+                    success:function (data) {
+                        console.log(data);
+                        console.log(data.code);
+                        console.log(data.content);
+                    },
+                    error:function (error) {
+                        
+                    }
+                    
+                }
+            )
+        }
+    )
+</script>
+</body>
+</html>

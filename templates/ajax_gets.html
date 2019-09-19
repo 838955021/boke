@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<form action="">
+    账号：<input id="username" type="text" name="username"><br>
+    密码：<input id="password" type="password" name="password"><br>
+    <input id="check_value" type="button" value="提交">
+</form>
+<script>
+    $("#check_value").click(
+        function () {
+            username=$("#username").val();
+            password=$("#password").val();
+            url='/ajax_gets_data/?username='+username+'&password='+password
+            $.ajax(
+                {
+                    url:url,
+                    type:'get',
+                    date:'',
+                    success:function (data) {
+                        console.log(data);
+                        console.log(data.code);
+                        console.log(data.content);
+                    },
+                    error:function (error) {
+                        
+                    }
+                }
+            )
+        }
+    )
+
+
+</script>
+</body>
+</html>
